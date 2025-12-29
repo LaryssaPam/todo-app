@@ -10,12 +10,12 @@ class TaskController extends Controller
     //
     public function index(){
 
-        // lecture de la liste de tache
-        $tasks = Task::all() ;
+       
 
-        // debug model
-       // dd($tasks) ;
+        return Task::all()->toResourceCollection();
+    }
+    // Créer un nouveau post
+    public function store(Request $request):JsResponse{
 
-        return view('task',compact('tasks'));
     }
 }
