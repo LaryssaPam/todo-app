@@ -15,7 +15,7 @@ class TaskController extends Controller
         return Task::all()->toResourceCollection();
     }
     // Créer un nouveau post
-    public function store(Request $request):JsResponse{
+    public function store(Request $request){
 
     }
 }
