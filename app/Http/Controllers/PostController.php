@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
@@ -13,7 +14,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $post = Post::All();
+        $posts = Post::All();
             return PostResource::collection($posts);
     }
 
@@ -22,7 +23,24 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation des donées
+          $validated = $request->validate([
+            'title' => 'string|max:255',
+            'content' => 'string',
+            'published' => 'boolean'
+        ]);
+
+        // Préparation du user
+        $validated['user_id'] = 1;
+
+        // Enregistrement des données
+        $post = Post::create($validated);
+        return (new PostRessource($post))
+         ->response()
+        ->setStatusCode(200);
+
+
+
     }
 
     /**
