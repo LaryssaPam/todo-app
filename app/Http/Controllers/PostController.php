@@ -13,6 +13,8 @@ class PostController extends Controller
     public function index()
     {
         //
+        $post = Post::All();
+            return PostResource::collection($posts);
     }
 
     /**
