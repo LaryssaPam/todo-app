@@ -9,12 +9,13 @@ class Post extends Model
 // $fillable pour sécurisé le droit d'ecriture
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'title',
         'content',
-        'author',
-        'published'
+        'user_id',
+        'published',
+        
     ];
 
     protected $casts = [
